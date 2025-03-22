@@ -10,7 +10,7 @@ export const routes: Routes = [
   //Pagina de Inicio
   {path:"home", component:HomeComponent},
   //Ruta para hallar el user
-  {path:"home/:_id",component:VistaUserComponent},
+  {path:"home/:id",component:VistaUserComponent},
 
 //Si no equivocamos con la url =>
   { path: "**", redirectTo: 'home' }

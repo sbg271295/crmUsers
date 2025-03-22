@@ -11,7 +11,4 @@ import { IUsers } from '../../interfaces/iusers.interface';
 export class ButtonsComponent {
   @Input()myUser!:IUsers;
 
-  verificarId(id: number) {
-    console.log("ID enviado al hacer clic:", id);
-  }
 }

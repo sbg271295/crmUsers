@@ -18,10 +18,10 @@ export class UsersService {
     return lastValueFrom(this.httpClient.get<IResponse>(this.endPoint));
   }
 
-  async getById(id: string): Promise<IUsers | undefined> {
+  async getById(id: number): Promise<IUsers | undefined> {
     try {
       const usuarios = await this.getAllPromise(); // Obtiene todos los usuarios
-      const usuario = usuarios.results.find(user => user._id === id); // Filtra directament
+      const usuario = usuarios.results.find(user => user.id === id); // Filtra directament
 
       return usuario;
     } catch (error) {
