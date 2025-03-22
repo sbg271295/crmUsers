@@ -5,5 +5,5 @@
   <div class="text-center p-2">
     <h3 class="text-black">{{miUser.username|uppercase}}</h3>
   </div>
-  <app-buttons [myUser]="miUser" ></app-buttons>
+  <app-buttons [myUser]="miUser" (deleteItemEmit)="deleteUser($event)"></app-buttons>
 </div>

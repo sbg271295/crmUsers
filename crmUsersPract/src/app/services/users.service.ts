@@ -10,6 +10,7 @@ import { IUsers } from '../interfaces/iusers.interface';
 export class UsersService {
   private endPoint1: string = "https://peticiones.online/api/users?page=1";
   private endPoint2: string = "https://peticiones.online/api/users?page=2";
+  private endPoint: string = "https://peticiones.online/api/users";
   private httpClient = inject(HttpClient);
 
   // Método para conseguir TODOS los usuarios de ambas páginas
@@ -39,5 +40,10 @@ export class UsersService {
       console.error(`Error al obtener usuario con ID ${id}:`, error);
       throw error;
     }
+  }
+
+  delete(id:number):Promise<IUsers>{
+    return lastValueFrom(this.httpClient.delete<IUsers>(`${this.endPoint}/${id}`))
+
   }
 }

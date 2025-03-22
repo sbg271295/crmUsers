@@ -39,5 +39,13 @@ export class HomeComponent {
     const mitad = Math.ceil(this.arrUsers.length / 2);
     return grupo === 1 ? this.arrUsers.slice(0, mitad) : this.arrUsers.slice(mitad);
   }
+
+  deleteEmployee(event:Boolean){
+    if(event){
+      this.cargarUsers();
+    }else{
+
+    }
+  }
 }
 
