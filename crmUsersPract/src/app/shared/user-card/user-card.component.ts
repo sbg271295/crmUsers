@@ -6,7 +6,7 @@ import { ButtonsComponent } from '../buttons/buttons.component';
 
 @Component({
   selector: 'app-user-card',
-  imports: [RouterLink,UpperCasePipe,ButtonsComponent],
+  imports: [UpperCasePipe,ButtonsComponent],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css'
 })

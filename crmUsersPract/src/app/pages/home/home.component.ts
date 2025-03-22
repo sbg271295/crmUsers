@@ -7,7 +7,8 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [UserCardComponent, RouterLink],
+  imports: [UserCardComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

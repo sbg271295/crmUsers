@@ -1,7 +1,8 @@
+import { IResponse } from './../interfaces/iresponse.interfaz';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { IResponse } from '../interfaces/iresponse.interfaz';
+import { IUsers } from '../interfaces/iusers.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,24 @@ import { IResponse } from '../interfaces/iresponse.interfaz';
 export class UsersService {
   private endPoint: string = "https://peticiones.online/api/users"
   private httpClient = inject(HttpClient);
+ sujetos:IResponse[]=[]
+ sujeto:IUsers[]=[]
 
   //Metodo para conseguir los usuarios de mi API de Tipo IResponse.
   getAllPromise(): Promise<IResponse>{
     return lastValueFrom(this.httpClient.get<IResponse>(this.endPoint));
   }
-/*
 
-  getById(id: string): Promise<IUsers> {
-    return lastValueFrom(this.httpClient.get<IResponse>(`${this.endPoint}/${id}`))
+  async getById(id: string): Promise<IUsers | undefined> {
+    try {
+      const usuarios = await this.getAllPromise(); // Obtiene todos los usuarios
+      const usuario = usuarios.results.find(user => user._id === id); // Filtra directament
+
+      return usuario;
+    } catch (error) {
+      console.error(`Error al obtener usuario con ID ${id}:`, error);
+      throw error;
+    }
   }
-*/
+
 }

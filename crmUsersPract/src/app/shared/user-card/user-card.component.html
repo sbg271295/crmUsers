@@ -1,9 +1,9 @@
-<div class="container text-center card bg-white border border-secondary p-3" [routerLink]="['/users', miUser.id]">
+<div class="container text-center card bg-white border border-secondary p-3">
   <figure class="figure mt-2">
     <img class="img-fluid rounded-circle border border-1 border-dark mt-4" [src]="miUser.image" [alt]="miUser.first_name">
   </figure>
   <div class="text-center p-2">
     <h3 class="text-black">{{miUser.username|uppercase}}</h3>
   </div>
-  <app-buttons></app-buttons>
+  <app-buttons [myUser]="miUser" ></app-buttons>
 </div>

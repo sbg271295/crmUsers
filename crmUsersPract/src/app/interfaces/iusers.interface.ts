@@ -1,5 +1,5 @@
   //Generamos un interface con los datos de los usuarios.
-export interface IUsers {
+export interface IUsers{
     "_id":string;
     "id": number;
     "first_name": string;
