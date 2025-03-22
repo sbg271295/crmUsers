@@ -10,5 +10,6 @@ import { IUsers } from '../../interfaces/iusers.interface';
 })
 export class ButtonsComponent {
   @Input()myUser!:IUsers;
+  @Input()volver:Boolean=false;
 
 }

@@ -2,12 +2,13 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IUsers } from '../../interfaces/iusers.interface';
 import { UsersService } from '../../services/users.service';
+import { ButtonsComponent } from "../../shared/buttons/buttons.component";
 
 @Component({
   selector: 'app-vista-user',
   templateUrl: './vista-user.component.html',
   styleUrl: './vista-user.component.css',
-  imports: []
+  imports: [ButtonsComponent]
 })
 export class VistaUserComponent {
   user!: IUsers | any;
