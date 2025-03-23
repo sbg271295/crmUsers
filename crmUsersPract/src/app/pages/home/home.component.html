@@ -1,12 +1,5 @@
 
 <main>
-  <div class="row text-center g-3 p-3 px-5">
-    @for(user of obtenerGrupo(grupoSeleccionado);track user._id){
-      <article class="col-12 col-md-6 col-lg-3">
-          <app-user-card [miUser]="user" (deleteItemEmit)="deleteEmployee($event)"></app-user-card>
-      </article>
-    }
-  </div>
   <div class="row justify-content-center mt-4">
     <div class="d-flex align-items-center justify-content-center mt-4">
       <div class="stepper">
@@ -15,8 +8,16 @@
         <div class="step" [class.active]="grupoSeleccionado === 2" (click)="cambiarGrupo(2)">2</div>
       </div>
     </div>
-
   </div>
+
+  <div class="row text-center g-3 p-3 px-5">
+    @for(user of obtenerGrupo(grupoSeleccionado);track user._id){
+      <article class="col-12 col-md-6 col-lg-3">
+          <app-user-card [miUser]="user" (deleteItemEmit)="deleteEmployee($event)"></app-user-card>
+      </article>
+    }
+  </div>
+
 </main>
 
 
