@@ -41,9 +41,20 @@ export class UsersService {
       throw error;
     }
   }
-
+//Metodo para borrar aunque no podamos
   delete(id:number):Promise<IUsers>{
     return lastValueFrom(this.httpClient.delete<IUsers>(`${this.endPoint}/${id}`))
 
+  }
+//Metodo para actualizar aunque no podamos
+  update(user: IUsers): Promise<IUsers> {
+
+    let { _id, ...usersBody } = user;
+    return lastValueFrom(this.httpClient.put<IUsers>(`${this.endPoint}/${_id}`, usersBody))
+  }
+//Metodo para insertar aunque no podamos.
+  insert(user: IUsers): Promise<IUsers> {
+    let { _id, ...usersBody } = user;
+    return lastValueFrom(this.httpClient.post<IUsers>(this.endPoint, usersBody))
   }
 }

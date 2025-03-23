@@ -14,7 +14,8 @@ export const routes: Routes = [
   {path:"home/:id",component:VistaUserComponent},
     //Ruta para hallar el formularioNew
   {path:"newUser",component:NewUserComponent},
-
-//Si no equivocamos con la url =>
+  //Ruta para actualizar usuario;
+  {path:"update/:id",component:NewUserComponent},
+  //Si no equivocamos con la url =>
   { path: "**", redirectTo: 'home' }
 ];
