@@ -32,15 +32,30 @@ export class UsersService {
   // Método para buscar usuario por ID
   async getById(id: number): Promise<IUsers | undefined> {
     try {
-      const usuarios = await this.getAllPromise();
-      const usuario = usuarios.find(user => user.id === id);
+      // Obtener usuarios de la página 1
+      const response1 = await lastValueFrom(this.httpClient.get<IResponse>(this.endPoint1));
+      const usuario1 = response1.results.find(user => user.id === id);
 
-      return usuario;
+      if (usuario1) {
+        return usuario1;
+      }
+
+      const response2 = await lastValueFrom(this.httpClient.get<IResponse>(this.endPoint2));
+      const usuario2 = response2.results.find(user => user.id === id);
+
+      if (usuario2) {
+        return usuario2;
+      }
+
+      console.error(`Usuario con ID ${id} no encontrado.`);
+      return undefined;
+
     } catch (error) {
       console.error(`Error al obtener usuario con ID ${id}:`, error);
-      throw error;
+      return undefined;
     }
   }
+
 //Metodo para borrar aunque no podamos
   delete(id:number):Promise<IUsers>{
     return lastValueFrom(this.httpClient.delete<IUsers>(`${this.endPoint}/${id}`))

@@ -11,13 +11,18 @@ import { UsersService } from '../../services/users.service';
 })
 export class ButtonsComponent {
   @Input()myUser!:IUsers;
+  user!: IUsers | any;
   @Input()volver:Boolean=false;
   @Output() deleteItemEmit:EventEmitter<Boolean>=new EventEmitter()
   router=inject(Router)
   service=inject(UsersService)
   route=inject(ActivatedRoute)
 
-  deleteEmployee(id: number) {
+
+
+
+ deleteEmployee(id: number) {
+
     const confirmDelete = window.confirm(`¿Estás seguro de que quieres borrar a ${this.myUser.first_name} ${this.myUser.last_name}?`);
 
     if (confirmDelete) {
@@ -31,5 +36,4 @@ export class ButtonsComponent {
       });
     }
   }
-
 }

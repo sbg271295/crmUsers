@@ -13,7 +13,7 @@
       <p class="fs-4"><strong>👤 Usuario:</strong> {{ user?.username }}</p>
       <p class="fs-4"><strong>✉️ Email:</strong> {{ user?.email }}</p>
       <p class="fs-4"><strong>🔒 Contraseña:</strong> {{ user?.password }}</p>
-    <app-buttons [volver]="true" (click)="deleteUser(user.id)"></app-buttons>
+    <app-buttons [volver]="true" [myUser]="user"></app-buttons>
     </div>
   </div>
 </section>
