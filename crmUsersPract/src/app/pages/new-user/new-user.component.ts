@@ -1,8 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsers } from '../../interfaces/iusers.interface';
+
 
 @Component({
   selector: 'app-new-user',
@@ -16,7 +17,8 @@ export class NewUserComponent {
   userservice = inject(UsersService);
   route = inject(ActivatedRoute);
   router = inject(Router);
-  @Input() nuevo = true;  // Inicialmente se asume que es nuevo
+  nuevo = true;
+  formularioVacio = true;
 
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -32,8 +34,9 @@ export class NewUserComponent {
       const id = Number(this.route.snapshot.paramMap.get('id'));
 
       if (id > 0) {
-        this.nuevo = false;
+        this.nuevo=false
         this.user = await this.userservice.getById(id);
+        this.formularioVacio = false;
 
         this.userForm.patchValue({
           username: this.user.username,
@@ -41,6 +44,8 @@ export class NewUserComponent {
           email: this.user.email,
           image: this.user.image
         });
+
+
       }
     } catch (error) {
       console.error("Error al obtener usuario", error);
@@ -63,4 +68,3 @@ export class NewUserComponent {
     }
   }
 }
-
