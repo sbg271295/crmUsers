@@ -20,21 +20,23 @@ export class VistaUserComponent {
   async ngOnInit() {
     try {
       const id = Number(this.route.snapshot.paramMap.get('id'));
-        this.user = await this.userservice.getById(id);
+      this.user = await this.userservice.getById(id);
 
     } catch (error) {
       console.error("Error al obtener usuario", error);
     }
   }
 
-  async deleteEmployee(id:number) {
+  async deleteUser(id: number) {
     try {
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.user = await this.userservice.getById(id);
-      const confirmDelete = window.confirm(`¿Estás seguro de que quieres borrar a ${this.user.first_name} ${this.user.last_name}?`);
+      const confirmDelete = window.confirm(
+        `¿Estás seguro de que quieres borrar a ${this.user.first_name} ${this.user.last_name}?`
+      );
 
       if (confirmDelete) {
-        await this.userservice.delete(this.user.id);
+        await this.userservice.delete(id);
         console.log("Usuario eliminado con éxito.");
 
         if (this.deleteItemEmit.observed) {
@@ -44,7 +46,7 @@ export class VistaUserComponent {
         }
       }
     } catch (error) {
-      console.error("❌ Error al eliminar usuario:", error);
+      console.error("Error al eliminar usuario:", error);
     }
   }
 
